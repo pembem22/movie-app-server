@@ -6,7 +6,7 @@ import cheerio from 'cheerio';
 
 @Injectable()
 export class AppService {
-  constructor(private imageService: ImageService) {}
+  constructor(private imageService: ImageService) { }
 
   async getTitleById(titleId: string) {
     const res = await gqlRequest(IMDB_TITLE_REQUEST, {
@@ -86,9 +86,9 @@ export class AppService {
         .map((e) => e.id)
         .filter((e) => IMDB_TITLE_REGEX.test(e));
 
-      return results;
+      return { result: results };
     } catch (e) {
-      return [];
+      return { result: [] };
     }
   }
 }
